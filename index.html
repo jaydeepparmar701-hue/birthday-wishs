@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Wifeyy! 🌸</title>
+    <style>
+        :root {
+            --primary-rose: #ff477e;
+            --deep-berry: #9b5de5;
+            --soft-petal: #ffccd5;
+            --bg-garden: linear-gradient(135deg, #fff0f3 0%, #fae0e4 50%, #f7cad0 100%);
+            --text-dark: #4a001e;
+            --whatsapp-green: #25D366;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-garden);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Continuous Falling Petals Engine */
+        .petal {
+            position: absolute;
+            opacity: 0.8;
+            animation: fallAndSway 6s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes fallAndSway {
+            0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(50vh) translateX(50px) rotate(180deg); opacity: 0.9; }
+            100% { transform: translateY(110vh) translateX(-20px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Main Storybook Container */
+        .card-container {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(15px);
+            padding: 35px 22px;
+            border-radius: 40px;
+            border: 3px solid #fff;
+            width: 100%;
+            max-width: 360px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 0 8px rgba(255, 204, 213, 0.4), 0 20px 45px rgba(255, 71, 126, 0.15);
+        }
+
+        /* Progress Bar Dots */
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--soft-petal);
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            width: 24px;
+            border-radius: 4px;
+            background-color: var(--primary-rose);
+        }
+
+        /* Typography & Assets */
+        .page-emoji {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            display: inline-block;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+        }
+
+        .wishes-title {
+            font-size: 2.1rem;
+            color: var(--primary-rose);
+            font-family: Cambria, Georgia, serif;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .nickname {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--deep-berry);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .page-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            color: #5c3d46;
+        }
+
+        /* Interactive Elements */
+        .amazing-note {
+            background: #fffdf9;
+            background-image: radial-gradient(#ffccd5 1px, transparent 0);
+            background-size: 15px 15px;
+            border: 2px solid var(--soft-petal);
+            padding: 20px 15px;
+            border-radius: 20px;
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .note-header {
+            font-family: Georgia, serif;
+            font-style: italic;
+            color: var(--primary-rose);
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        /* Interactive Virtual Scratch Card for Reasons */
+        .reason-box {
+            background: linear-gradient(135deg, #ffe5ec, #ffccd5);
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            color: var(--deep-berry);
+            margin: 8px 0;
+            border: 1px dashed var(--primary-rose);
+            transform: scale(1);
+            animation: popIn 0.3s ease;
+        }
+
+        /* Navigation Buttons */
+        .btn-next {
+            background: linear-gradient(45deg, var(--primary-rose), var(--deep-berry));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 71, 126, 0.35);
+            width: 100%;
+            transition: transform 0.2s;
+        }
+
+        .btn-next:active { transform: scale(0.96); }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--whatsapp-green);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Multi-Page System Architecture */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: slideBloom 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        }
+
+        @keyframes slideBloom {
+            from { opacity: 0; transform: translateY(15px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+    </style>
+    <!-- Confetti Engine -->
+    <script src="https://jsdelivr.net"></script>
+</head>
+<body>
+
+    <div class="card-container">
+        <!-- Progress Indicators -->
+        <div class="progress-dots">
+            <div class="dot active" id="dot1"></div>
+            <div class="dot" id="dot2"></div>
+            <div class="dot" id="dot3"></div>
+            <div class="dot" id="dot4"></div>
+            <div class="dot" id="dot5"></div>
+        </div>
+
+        <!-- PAGE 1: The Welcome Gate -->
+        <div id="page1" class="page active">
+            <span class="page-emoji">💐</span>
+            <h1 class="wishes-title">Happy Birthday</h1>
+            <div class="nickname">My Beautiful Wifeyy 🌺</div>
+            <p class="page-text">
+                Welcome to your little digital garden! I built a 5-chapter storybook just to celebrate the most amazing woman in the universe. Tap below to flip the first page!
+            </p>
+            <button class="btn-next" onclick="goToPage(2)">Step Inside 🌷</button>
+        </div>
+
+        <!-- PAGE 2: Our Memories / Timeline -->
+        <div id="page2" class="page">
+            <span class="page-emoji">⏳</span>
+            <h1 class="wishes-title" style="font-size: 1.8rem;">Chapter 1</h1>
+            <div class="nickname">Another Blessed Year</div>
+            <p class="page-text">
+                Every single day spent as your husband feels like a core memory. From our late-night chats to our biggest laughs, you make every second precious. I am so incredibly lucky to walk through life right by your side.
+            </p>
+            <button class="btn-next" onclick="goToPage(3)">Flip Next Page ✨</button>
+        </div>
+
+        <!-- PAGE 3: Why I Love You (Interactive) -->
+        <div id="page3" class="page">
+            <span class="page-emoji">💖</span>
+            <h1 class="wishes-title" style="font-size: 1.8rem;">Chapter 2</h1>
+            <div class="nickname">3 Things I Love About You</div>
+            <div style="margin-bottom: 20px;">
+                <div class="reason-box">✨ Your gorgeous, infectious smile</div>
+                <div class="reason-box">🌸 The endless warmth in your heart</div>
+                <div class="reason-box">👑 How beautifully you manage our world</div>
+            </div>
+            <button class="btn-next" onclick="goToPage(4)">See My Promise 📜</button>
+        </div>
+
+        <!-- PAGE 4: The Deep Romantic Note -->
+        <div id="page4" class="page">
+            <span class="page-emoji">🌹</span>
+            <h1 class="wishes-title" style="font-size: 1.8rem;">Chapter 3</h1>
+            <div class="nickname">My Love Letter</div>
+            <div class="amazing-note">
+                <div class="note-header">To my favorite flower,</div>
+                You are my anchor when things get wild and my biggest cheer squad. Thank you for your patience, your unconditional love, and for choosing to share your gorgeous life journey with me. May this year blow your mind with joy!
+            </div>
+            <button class="btn-next" onclick="goToPage(5)">Unwrap Final Surprise! 🎁</button>
+        </div>
+
+        <!-- PAGE 5: The Grand Celebration Finale & WhatsApp Link -->
+        <div id="page5" class="page">
+            <span class="page-emoji">👑</span>
+            <h1 class="wishes-title">Happy Birthday!</h1>
+            <div class="nickname">Cheers to My Queen 🥂</div>
+            <p class="page-text">
+                May all your biggest dreams come true today and always, wifeyy. The celebration doesn't stop here, but let me know you read this! 
+            </p>
+            
+            <button class="btn-next" onclick="blastConfetti()">Make It Rain Confetti! 🎉</button>
+            
